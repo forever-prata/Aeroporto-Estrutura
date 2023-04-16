@@ -2,17 +2,20 @@ package bases;
 
 public class Aviao {
 	
+	private static int proximoId = 0;
 	private int id;
 	private int combustivel;
 	private Aviao prox;
 	
-	public Aviao(int id) {
-		this.id = id;
-		this.prox = null;
+	public Aviao() {
+	      this.id = proximoId;
+	      proximoId += 2;
+	      this.prox = null;
 	}
 	
-	public Aviao(int id, int combustivel) {
-		this.id = id;
+	public Aviao(int combustivel) {
+	    this.id = proximoId;
+	    proximoId += 2;
 		this.combustivel = combustivel;
 		this.prox = null;
 	}
