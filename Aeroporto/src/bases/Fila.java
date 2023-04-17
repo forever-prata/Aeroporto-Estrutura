@@ -13,12 +13,12 @@ public class Fila {
 		return tamanho == 0;
 	}
 	
-	public int getInicio() {
+	public Aviao getInicio() {
 		if (!estaVazio()) {
-			return inicio.getId();
+			return inicio;
 		}else {
 			System.out.println("Fila Vazia");
-			return -1;
+			return null;
 		}
 	}
 	
@@ -80,6 +80,31 @@ public class Fila {
 			aux.setCombustivel(aux.getCombustivel()-1);
 			aux = aux.getProx();
 		} while (aux != null);
+		
+		verificaCombustivel();
+	}
+	
+	public void verificaCombustivel() {
+		Aviao aux = inicio;
+		Aviao anterior = inicio;
+		Aviao removido = null;
+		Aviao inicioAntigo = inicio;
+		
+		if (aux != inicio) {
+			anterior = anterior.getProx();
+		}
+		
+		do {
+			if (aux.getCombustivel() == 1) {
+				removido = aux;
+				anterior.setProx(aux.getProx());
+			}
+			aux = aux.getProx();
+		} while (aux != null);
+		
+		inicio = removido;
+		inicio.setProx(inicioAntigo);
+		
 	}
 
 }
