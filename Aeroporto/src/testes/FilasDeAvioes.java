@@ -20,6 +20,12 @@ public class FilasDeAvioes {
 			pousar1.inserirFinal(aux);
 		}
 		
+		for (int i = 0; i < qtd; i++) {
+			int combustivel = gerador.nextInt(7);
+			Aviao aux = new Aviao(combustivel+1);
+			decolar1.inserirFinal(aux);
+		}
+		
 		System.out.println("LISTA DE POUSO");
 		System.out.println(pousar1.mostrarLista());
 		System.out.println("LISTA DE DECOLAR");
@@ -27,8 +33,10 @@ public class FilasDeAvioes {
 		System.out.println("--------------------------------");
 		
 		for (int i = 0; i < 5; i++) {
-			pousar1.passarTempo();
+			
+			pousar1.verificaCombustivel();
 			e.Decisao(pousar1, decolar1);
+			pousar1.passarTempo();
 			
 			System.out.println("LISTA DE POUSO");
 			System.out.println(pousar1.mostrarLista());

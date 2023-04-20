@@ -123,16 +123,17 @@ public class Fila {
 			aux = aux.getProx();
 		} while (aux != null);
 		
-		verificaCombustivel();
 	}
 	
 	public void verificaCombustivel() {
 		Aviao nodoRemovido = null;
+		Aviao copia = null;
 		Aviao aux = inicio;
 		
 		while (aux != null) {
 			if (aux.getCombustivel() == 1) {
 				nodoRemovido = aux;
+				copia = aux;
 				break;
 			}
 			aux = aux.getProx();
@@ -146,11 +147,11 @@ public class Fila {
 			return;
 		}else if (nodoRemovido == fim) {
 			removeFinal();
-			inserirInicio(aux);
+			inserirInicio(copia);
 		}else {
 			nodoRemovido.getAnt().setProx(nodoRemovido.getProx());
 			nodoRemovido.getProx().setAnt(nodoRemovido.getAnt());
-			inserirInicio(aux);
+			inserirInicio(copia);
 		}
 
 	}
