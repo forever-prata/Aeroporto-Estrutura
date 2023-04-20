@@ -19,24 +19,36 @@ public class FilasDeAvioes {
 		Fila pousar1 = new Fila();
 		Fila decolar1 = new Fila();
 		
-		pousar1.inserir(a1);
-		pousar1.inserir(a2);
-		pousar1.inserir(a3);
-		pousar1.inserir(a4);
+		pousar1.inserirFinal(a1);
+		pousar1.inserirFinal(a2);
+		pousar1.inserirFinal(a3);
+		pousar1.inserirFinal(a4);
 		
-		decolar1.inserir(b1);
-		decolar1.inserir(b2);
-		decolar1.inserir(b3);
-		decolar1.inserir(b4);
-
+		decolar1.inserirFinal(b1);
+		decolar1.inserirFinal(b2);
+		decolar1.inserirFinal(b3);
+		decolar1.inserirFinal(b4);
 		
+		System.out.println("LISTA DE POUSO");
 		System.out.println(pousar1.mostrarLista());
+		System.out.println("LISTA DE DECOLAR");
 		System.out.println(decolar1.mostrarLista());
 		
 		pousar1.passarTempo();
 		e.Decisao(pousar1, decolar1);
 		
+		System.out.println("LISTA DE POUSO");
 		System.out.println(pousar1.mostrarLista());
+		System.out.println("LISTA DE DECOLAR");
+		System.out.println(decolar1.mostrarLista());
+		
+		pousar1.passarTempo();
+		e.Decisao(pousar1, decolar1);
+		
+		System.out.println("LISTA DE POUSO");
+		System.out.println(pousar1.mostrarLista());
+		System.out.println("LISTA DE DECOLAR");
+		System.out.println(decolar1.mostrarLista());
 		
 	}
 

@@ -30,29 +30,71 @@ public class Fila {
 		this.tamanho = tamanho;
 	}
 
-	public void inserir(Aviao novo) {
-			if (estaVazio()) {
-				inicio = novo;
-				fim = novo;
-			}else {
-				fim.setProx(novo);
-				fim = novo;
-			}
-			tamanho++;
+	
+	public void inserirInicio(Aviao aviao) {
+		
+		if (inicio != null) {
+			inicio.setAnt(aviao);
+			aviao.setProx(inicio);
+		}
+		
+		inicio = aviao;
+		if (fim == null) {
+			fim = aviao;
+		}
+		
+		tamanho++;
 	}
 	
-	public void remover() {
-		if (estaVazio()) {
+	public void inserirFinal(Aviao aviao) {
+		
+		if (fim != null) {
+			fim.setProx(aviao);
+			aviao.setAnt(fim);
+		}
+		fim = aviao;
+		if (inicio == null) {
+			inicio = aviao;
+			
+		}
+		
+		tamanho++;
+	}
+	
+	public void removeInicio() {
+		Aviao aviaoRemovido = inicio;
+		
+		if (inicio == null) {
 			return;
 		}
 		
 		inicio = inicio.getProx();
-		tamanho--;
-		
-		if (estaVazio()) {
-			fim = null;
+		if (inicio != null) {
+			inicio.setAnt(null);
 		}
 		
+		if (aviaoRemovido == fim) {
+			removeFinal();
+		}
+		tamanho--;
+	}
+	
+	public void removeFinal() {
+		Aviao aviaoRemovido = fim;
+		
+		if (fim == null) {
+			return;
+		}
+		
+		fim = fim.getAnt();
+		if (fim != null) {
+			fim.setProx(null);
+		}
+		
+		if (aviaoRemovido == inicio) {
+			removeInicio();
+		}
+		tamanho--;
 	}
 	
 	public String mostrarLista() {
@@ -85,26 +127,32 @@ public class Fila {
 	}
 	
 	public void verificaCombustivel() {
+		Aviao nodoRemovido = null;
 		Aviao aux = inicio;
-		Aviao anterior = inicio;
-		Aviao removido = null;
-		Aviao inicioAntigo = inicio;
 		
-		if (aux != inicio) {
-			anterior = anterior.getProx();
-		}
-		
-		do {
+		while (aux != null) {
 			if (aux.getCombustivel() == 1) {
-				removido = aux;
-				anterior.setProx(aux.getProx());
+				nodoRemovido = aux;
+				break;
 			}
 			aux = aux.getProx();
-		} while (aux != null);
+		}
 		
-		inicio = removido;
-		inicio.setProx(inicioAntigo);
+		if (nodoRemovido == null) {
+			return;
+		}
 		
+		if (nodoRemovido == inicio) {
+			return;
+		}else if (nodoRemovido == fim) {
+			removeFinal();
+			inserirInicio(aux);
+		}else {
+			nodoRemovido.getAnt().setProx(nodoRemovido.getProx());
+			nodoRemovido.getProx().setAnt(nodoRemovido.getAnt());
+			inserirInicio(aux);
+		}
+
 	}
 
 }

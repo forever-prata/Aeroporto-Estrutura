@@ -6,11 +6,13 @@ public class Aviao {
 	private int id;
 	private int combustivel;
 	private Aviao prox;
+	private Aviao ant;
 	
 	public Aviao() {
 	      this.id = proximoId;
 	      proximoId += 2;
 	      this.prox = null;
+	      ant = null;
 	}
 	
 	public Aviao(int combustivel) {
@@ -44,5 +46,11 @@ public class Aviao {
 		this.prox = prox;
 	}
 	
-	
+	public Aviao getAnt() {
+		return ant;
+	}
+
+	public void setAnt(Aviao ant) {
+		this.ant = ant;
+	}
 }
