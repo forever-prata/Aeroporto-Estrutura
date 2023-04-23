@@ -59,7 +59,7 @@ public class Evento {
 			return aux;
 		}
 		
-		if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() > 1) {
+		if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() > 2) {
 			aux.setId(decolar.getInicio().getId());
 			aux.setTempo(decolar.getInicio().getTempo());
 			decolar.removeInicio();
@@ -80,7 +80,7 @@ public class Evento {
 			return aux;
 		}
 		
-		if (decolar.getTamanho() > pousar.getTamanho() && pousar.getTamanho() > 0 && pousar.getInicio().getCombustivel() > 1) {
+		if (decolar.getTamanho() > pousar.getTamanho() && pousar.getTamanho() > 0 && pousar.getInicio().getCombustivel() > 2) {
 			aux.setId(decolar.getInicio().getId());
 			aux.setTempo(decolar.getInicio().getTempo());
 			decolar.removeInicio();
