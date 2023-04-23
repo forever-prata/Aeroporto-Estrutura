@@ -2,63 +2,92 @@ package bases;
 
 public class Evento {
 
-	public void Decisao(Fila pousar, Fila decolar) {
+	public Aviao Decisao(Fila pousar, Fila2 decolar) {
+		Aviao aux  = new Aviao();
+		if (pousar.getTamanho() <= 0 && decolar.getTamanho() <= 0) {
+			return aux;
+		}
+		
+		if (pousar.getTamanho() > 0) {
+			if (pousar.getInicio().getCombustivel() <= 0) {
+				aux.setId(pousar.getInicio().getId());
+				aux.setTempo(pousar.getInicio().getTempo());
+				pousar.removeInicio();
+				return aux;
+			}
+		}
 		
 		if (pousar.getTamanho() >= 2) {
 			if (pousar.getInicio().getCombustivel() == 1 && pousar.getInicio().getProx().getCombustivel() == 1) {
 				pousar.removeInicio();
 				pousar.removeInicio();
-				return;
+				return null;
 			}
 		}
 		
 		if (decolar.getTamanho() > 0 && pousar.getTamanho() > 0) {
-			if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() == 1) {
+			if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() <= 2) {
+				aux.setId(pousar.getInicio().getId());
+				aux.setTempo(pousar.getInicio().getTempo());
 				pousar.removeInicio();
-				return;
+				return aux;
+			}else if (decolar.getTamanho() > pousar.getTamanho() && pousar.getInicio().getCombustivel() <= 2) {
+				aux.setId(pousar.getInicio().getId());
+				aux.setTempo(pousar.getInicio().getTempo());
+				pousar.removeInicio();
+				return aux;
+			}else if (pousar.getTamanho() > decolar.getTamanho()) {
+					aux.setId(pousar.getInicio().getId());
+					aux.setTempo(pousar.getInicio().getTempo());
+					pousar.removeInicio();
+					return aux;
+			}else if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() > 2) {
+				aux.setId(decolar.getInicio().getId());
+				aux.setTempo(decolar.getInicio().getTempo());
+				decolar.removeInicio();
+				return aux;
 			}
+		}else if (decolar.getTamanho() > 0 && pousar.getTamanho()<=0) {
+			aux.setId(decolar.getInicio().getId());
+			aux.setTempo(decolar.getInicio().getTempo());
+			decolar.removeInicio();
+			return aux;
+		}else if (pousar.getTamanho() > 0 && decolar.getTamanho() <= 0) {
+			aux.setId(pousar.getInicio().getId());
+			aux.setTempo(pousar.getInicio().getTempo());
+			pousar.removeInicio();
+			return aux;
 		}
 		
-		if (pousar.getTamanho() <= 0 && decolar.getTamanho() <= 0) {
-			return;
+		if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() > 1) {
+			aux.setId(decolar.getInicio().getId());
+			aux.setTempo(decolar.getInicio().getTempo());
+			decolar.removeInicio();
+			return aux;
 		}
 		
 		if (pousar.getTamanho() <= 0 && decolar.getTamanho() > 0) {
+			aux.setId(decolar.getInicio().getId());
+			aux.setTempo(decolar.getInicio().getTempo());
 			decolar.removeInicio();
-			return;
+			return aux;
 		}
 		
 		if (pousar.getTamanho() > 0 && decolar.getTamanho() <= 0) {
+			aux.setId(pousar.getInicio().getId());
+			aux.setTempo(pousar.getInicio().getTempo());
 			pousar.removeInicio();
-			return;
+			return aux;
 		}
 		
 		if (decolar.getTamanho() > pousar.getTamanho() && pousar.getTamanho() > 0 && pousar.getInicio().getCombustivel() > 1) {
+			aux.setId(decolar.getInicio().getId());
+			aux.setTempo(decolar.getInicio().getTempo());
 			decolar.removeInicio();
-			return;
+			return aux;
 		}
 		
-		if (decolar.getTamanho() > pousar.getTamanho() && pousar.getTamanho() > 0 && pousar.getInicio().getCombustivel() == 1) {
-			pousar.removeInicio();
-			return;
-		}
-		
-		if (pousar.getTamanho() > decolar.getTamanho()) {
-			pousar.removeInicio();
-			return;
-		}
-			
-		if (decolar.getTamanho() == pousar.getTamanho() && pousar.getInicio().getCombustivel() > 1) {
-			decolar.removeInicio();
-			return;
-		}
-		
-		
-		if (pousar.getTamanho() > decolar.getTamanho() && pousar.getInicio().getCombustivel() == 1) {
-			pousar.removeInicio();
-			return;
-		}
-		
+		return aux;
 	}
 	
 }

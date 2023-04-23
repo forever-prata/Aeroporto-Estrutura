@@ -2,14 +2,16 @@ package testes;
 import java.util.Random;
 
 import bases.Aviao;
+import bases.Aviao2;
 import bases.Evento;
 import bases.Fila;
+import bases.Fila2;
 public class FilasDeAvioes {
 
 	public static void main(String[] args) {
 		Evento e = new Evento();
 		Fila pousar1 = new Fila();
-		Fila decolar1 = new Fila();
+		Fila2 decolar1 = new Fila2();
 		Random gerador = new Random();
 		
 		int qtd = gerador.nextInt(3);
@@ -22,7 +24,7 @@ public class FilasDeAvioes {
 		
 		for (int i = 0; i < qtd; i++) {
 			int combustivel = gerador.nextInt(7);
-			Aviao aux = new Aviao(combustivel+1);
+			Aviao2 aux = new Aviao2(combustivel+1);
 			decolar1.inserirFinal(aux);
 		}
 		

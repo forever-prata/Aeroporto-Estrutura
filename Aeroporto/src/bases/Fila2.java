@@ -1,11 +1,11 @@
 package bases;
 
-public class Fila {
-	private Aviao inicio = null;
-	private Aviao fim;
+public class Fila2 {
+	private Aviao2 inicio = null;
+	private Aviao2 fim;
 	private int tamanho = 0;
 	
-	public Fila() {
+	public Fila2() {
 		
 	}
 	
@@ -13,7 +13,7 @@ public class Fila {
 		return tamanho == 0;
 	}
 	
-	public Aviao getInicio() {
+	public Aviao2 getInicio() {
 		if (!estaVazio()) {
 			return inicio;
 		}else {
@@ -31,7 +31,7 @@ public class Fila {
 	}
 
 	
-	public void inserirInicio(Aviao aviao) {
+	public void inserirInicio(Aviao2 aviao) {
 		
 		if (inicio != null) {
 			inicio.setAnt(aviao);
@@ -44,7 +44,7 @@ public class Fila {
 		}
 	}
 	
-	public void inserirFinal(Aviao aviao) {
+	public void inserirFinal(Aviao2 aviao) {
 		
 		if (fim != null) {
 			fim.setProx(aviao);
@@ -60,7 +60,7 @@ public class Fila {
 	}
 	
 	public void removeInicio() {
-		Aviao aviaoRemovido = inicio;
+		Aviao2 aviaoRemovido = inicio;
 		
 		if (inicio == null) {
 			return;
@@ -78,7 +78,7 @@ public class Fila {
 	}
 	
 	public void removeFinal() {
-		Aviao aviaoRemovido = fim;
+		Aviao2 aviaoRemovido = fim;
 		
 		if (fim == null) {
 			return;
@@ -101,7 +101,7 @@ public class Fila {
 			return lista;
 		}
 		
-		Aviao aux = inicio;
+		Aviao2 aux = inicio;
 		do {
 			lista+= " * id : "+aux.getId()+" Combustivel: "+aux.getCombustivel()+" Tempo: "+aux.getTempo()+"\n";
 			aux = aux.getProx();
@@ -110,14 +110,13 @@ public class Fila {
 	}
 	
 	public void passarTempo() {
-		Aviao aux = inicio;
+		Aviao2 aux = inicio;
 		
 		if (inicio == null) {
 			return;
 		}
 
 		do {
-			aux.setCombustivel(aux.getCombustivel()-1);
 			aux.setTempo(aux.getTempo()+1);
 			aux = aux.getProx();
 		} while (aux != null);
@@ -125,9 +124,9 @@ public class Fila {
 	}
 	
 	public void verificaCombustivel() {
-		Aviao nodoRemovido = null;
-		Aviao copia = null;
-		Aviao aux = inicio;
+		Aviao2 nodoRemovido = null;
+		Aviao2 copia = null;
+		Aviao2 aux = inicio;
 		
 		while (aux != null) {
 			if (aux.getCombustivel() <= 2) {
